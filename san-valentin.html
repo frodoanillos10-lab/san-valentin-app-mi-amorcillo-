@@ -3,34 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day App</title>
+    <title>Valentine's Day Invitation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #f9f9f9;
             text-align: center;
             padding: 50px;
         }
         .button {
-            background-color: #ff6b81;
-            border: none;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 2px;
+            padding: 10px 20px;
+            font-size: 20px;
             cursor: pointer;
+            border: none;
             border-radius: 5px;
-            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+        .yes {
+            background-color: #ff6f61;
+            color: white;
+        }
+        .no {
+            background-color: #ddd;
+            color: black;
+        }
+        .yes:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Valentine's Day App!</h1>
-    <p>Click the buttons below to spread some love!</p>
-    <button class="button" onclick="alert('Happy Valentine's Day!')">Send Love</button>
-    <button class="button" onclick="alert('You are amazing!')">Compliment</button>
-    <button class="button" onclick="alert('You make me smile!')">Appreciate</button>
+    <h1>You're Invited!</h1>
+    <p>Will you join me for a Valentine's Day celebration?</p>
+    <button class="button yes" onclick="showInvitation()">Yes</button>
+    <button class="button no">No</button>
+
+    <div id="invitation" style="display: none; margin-top: 20px;">
+        <h2>You're Invited to a Valentine's Day Celebration!</h2>
+        <p>Date: February 14 at 21:00 hours</p>
+        <p>Dress Code: Dress to impress!</p>
+        <p>Love Message: "You are my flower in my garden of dreams!"</p>
+    </div>
+
+    <script>
+        function showInvitation() {
+            document.getElementById('invitation').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
