@@ -3,52 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Invitation</title>
+    <title>San Valentín</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            text-align: center;
-            padding: 50px;
-        }
-        .button {
-            padding: 10px 20px;
-            font-size: 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
-        .yes {
-            background-color: #ff6f61;
+            background: pink;
             color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
-        .no {
-            background-color: #ddd;
-            color: black;
+        
+        h1 {
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out;
         }
-        .yes:hover {
-            transform: scale(1.1);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .falling-heart {
+            position: absolute;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                transform: translateX(0);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>You're Invited!</h1>
-    <p>Will you join me for a Valentine's Day celebration?</p>
-    <button class="button yes" onclick="showInvitation()">Yes</button>
-    <button class="button no">No</button>
-
-    <div id="invitation" style="display: none; margin-top: 20px;">
-        <h2>You're Invited to a Valentine's Day Celebration!</h2>
-        <p>Date: February 14 at 21:00 hours</p>
-        <p>Dress Code: Dress to impress!</p>
-        <p>Love Message: "You are my flower in my garden of dreams!"</p>
-    </div>
+    <h1>Feliz Día de San Valentín</h1>
+    <audio autoplay loop>
+        <source src="path-to-romantic-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
-        function showInvitation() {
-            document.getElementById('invitation').style.display = 'block';
-        }
+        const createHeart = () => {
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        };
+
+        setInterval(createHeart, 500);
     </script>
 </body>
 </html>
