@@ -1,66 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Valentín</title>
+    <title>Día de San Valentín</title>
     <style>
         body {
-            background: pink;
-            color: white;
-            text-align: center;
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
             overflow: hidden;
+            position: relative;
         }
-        
-        h1 {
-            font-size: 3em;
-            animation: fadeIn 2s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .falling-heart {
+        #falling-hearts {
             position: absolute;
-            animation: fall linear infinite;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
-
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: fall 5s infinite;
+        }
         @keyframes fall {
-            0% {
-                top: -10%;
-                transform: translateX(0);
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        #invitation {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Feliz Día de San Valentín</h1>
-    <audio autoplay loop>
-        <source src="path-to-romantic-music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div id="falling-hearts"></div>
+    <div id="invitation">
+        <h1>¡Te amo!</h1>
+        <p>Te invito a nuestra cita romántica el 14 de febrero a las 21:00 horas.</p>
+        <p>Código de vestimenta: Elegante</p>
+    </div>
+    <button class="yes" onclick="showInvitation()">Sí</button>
+    <button class="no" onclick="alert('Tal vez otro momento.')">No</button>
 
     <script>
-        const createHeart = () => {
-            const heart = document.createElement('div');
-            heart.classList.add('falling-heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            heart.innerHTML = '❤️';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        };
-
-        setInterval(createHeart, 500);
+        function showInvitation() {
+            document.getElementById('invitation').style.display = 'block';
+        }
+        function createFallingHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.getElementById('falling-hearts').appendChild(heart);
+            }
+        }
+        createFallingHearts();
     </script>
 </body>
 </html>
